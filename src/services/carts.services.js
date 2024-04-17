@@ -60,7 +60,6 @@ class CartsServices {
       return { product: e._id, quantity: e.quantity || 1 };
     });
 
-    console.log("productsToSend:", productsToSend);
     productsToSend.forEach((product) => {
       const productExists = cart.products.find(
         (a) => a.product.toString() == product.product

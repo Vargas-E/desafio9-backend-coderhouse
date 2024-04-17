@@ -9,11 +9,8 @@ const socket = require("socket.io");
 class ViewsController {
   async renderCart(req, res) {
     try {
-      console.log("user:", req.user)
       const userCartId = req.user.cart;
-      const newCart = await cartsServices.getCartById(
-        userCartId, true
-      );
+      const newCart = await cartsServices.getCartById(userCartId, true);
       res.render("cart", {
         cart: JSON.stringify(newCart),
         active: { cart: true },
@@ -108,14 +105,22 @@ class ViewsController {
           );
         });
       });
-      res.render("realtimeproducts", { user: req.user });
+      res.render("realtimeproducts", { user: req.user, active: { realtime_products: true },});
+    } catch (err) {
+      res.status(500).json({ error: "server error" });
+    }
+  }
+
+  async renderProfile(req, res) {
+    try {
+      res.render("profile", { user: req.user, active: { profile: true } });
     } catch (err) {
       res.status(500).json({ error: "server error" });
     }
   }
 
   async test(req, res) {
-    res.render("test", { user: req.user });
+    res.render("test", { user: req.user, active: { test: true }, });
   }
 }
 

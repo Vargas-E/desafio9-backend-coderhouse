@@ -1,5 +1,4 @@
 const cartContainer = document.getElementById("cartContainer");
-console.log("cart:", cart);
 
 cart.products.forEach((product) => {
     const productData = product.product;

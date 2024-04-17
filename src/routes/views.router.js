@@ -6,6 +6,8 @@ const viewsController = new ViewsController();
 
 router.use(express.static("./src/public"));
 
+
+// Middlewares
 function authenticateJWT(req, res, next) {
   passport.authenticate("jwt", { session: false }, (err, user, info) => {
     if (user) {
@@ -31,7 +33,7 @@ function passportAuth(req, res, next) {
   })(req, res, next);
 }
 
-// cart view
+// Routes
 router.get(
   "/cart",
   passportAuth,
@@ -59,6 +61,8 @@ router.get(
   passportAuth, adminMiddleware, 
   viewsController.renderRealtimeProducts
 );
+
+router.get("/profile", passportAuth, viewsController.renderProfile)
 
 router.get("/test", passportAuth, adminMiddleware, viewsController.test)
 

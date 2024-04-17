@@ -3,7 +3,6 @@ function handleQueryString(queryObject, value) {
     const queryArr = Object.keys(queryObject).map((e) =>
       e == "page" ? `${e}=${value}` : `${e}=${queryObject[e]}`
     );
-    console.log("queryString:", queryArr);
     if (!queryObject.page) {
       queryArr.push(`page=${value}`);
     }

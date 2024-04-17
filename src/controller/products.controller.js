@@ -14,7 +14,6 @@ class ProductController {
 
   async getProductById(req, res) {
     const { pid } = req.params;
-    console.log("id:", pid);
     try {
       const product = await productsService.getProductById(pid);
       res.status(200).json(product);
@@ -26,7 +25,6 @@ class ProductController {
 
   async deleteProductById(req, res) {
     const { pid } = req.params;
-    console.log("id:", pid);
     try {
       const product = await productsService.deleteProductById(pid);
       res.status(200).json({ message: `Product with id ${pid} deleted` });

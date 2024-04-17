@@ -17,7 +17,6 @@ class ProductsService {
     if (sort) {
       args.sort = { price: sort };
     }
-    console.log(query ? { category: query } : {}, args);
     if (query) {
       products = await productsRepository.getProducts(
         { category: query },
@@ -46,7 +45,6 @@ class ProductsService {
   }
 
   async addProduct(newProduct) {
-    console.log("newProduct:", newProduct);
     if (!checkNewProduct(newProduct)) {
       throw "All fields are required. Product invalid";
     }

@@ -326,4 +326,42 @@ h1 {
     border-radius: 10px;
 }
 
+/* profile */
 
+
+.align {
+    justify-content: center;
+}
+/* .profileCard {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    background-color: #0c1b1b;
+    color: #009B72;
+    border-radius: 20px;
+    min-width: 300px;
+    min-height: 200px;
+} */
+
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem auto auto auto;
+}
+
+.profileText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+.placeholderImage {
+    align-self: center;
+    background-color: white;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin: 1rem 0 5rem 0;
+}
