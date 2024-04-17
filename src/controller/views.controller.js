@@ -12,7 +12,7 @@ class ViewsController {
       console.log("user:", req.user)
       const userCartId = req.user.cart;
       const newCart = await cartsServices.getCartById(
-        userCartId
+        userCartId, true
       );
       res.render("cart", {
         cart: JSON.stringify(newCart),

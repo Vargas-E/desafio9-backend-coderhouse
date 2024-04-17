@@ -1,11 +1,14 @@
 const CartModel = require("../models/cart.model.js");
 
 class CartsRepository {
-  async getCartById(id) {
+  async getCartById(id, populate) {
     try {
-      const cart = await CartModel.findById(id)
-        .populate("products.product")
-        .exec();
+      let cart;
+      if (populate) {
+        cart = await CartModel.findById(id).populate("products.product").exec();
+      } else {
+        cart = await CartModel.findById(id);
+      }
       if (!cart) {
         console.log("No se encontro el carrito por id");
         throw "Cart not found";
