@@ -22,7 +22,7 @@ class ProductsRepository {
 
   async getProductByCode(code) {
     try {
-      const product = await ProductModel.findOne({ code: product.code });
+      const product = await ProductModel.findOne({ code: code });
       return product;
     } catch (err) {
       console.log("Error al buscar producto:", err);
@@ -48,7 +48,7 @@ class ProductsRepository {
       const product = new ProductModel({
         ...newProduct,
         status: true,
-        thumbnails: product.thumbnails || [],
+        thumbnails: newProduct.thumbnails || [],
       });
       product.save();
       return newProduct;
@@ -60,7 +60,12 @@ class ProductsRepository {
 
   async updateProduct(id, productData) {
     try {
-      await ProductModel.findByIdAndUpdate(id, productData);
+      const newProduct = await ProductModel.findByIdAndUpdate(id, productData);
+      if (!newProduct) {
+        throw "Product to update not found";
+      }
+      console.log("Producto actualizado");
+      return newProduct;
     } catch (err) {
       console.log("Error al editar producto:", err);
       throw new Error(`Error mongo (update product): ${err}`);

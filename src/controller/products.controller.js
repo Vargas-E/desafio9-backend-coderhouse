@@ -28,7 +28,7 @@ class ProductController {
     const { pid } = req.params;
     console.log("id:", pid);
     try {
-      const product = await productsService.getProductById(pid);
+      const product = await productsService.deleteProductById(pid);
       res.status(200).json({ message: `Product with id ${pid} deleted` });
     } catch (err) {
       console.log("err:", err);
@@ -38,9 +38,8 @@ class ProductController {
 
   async addProduct(req, res) {
     const newProduct = req.body;
-    console.log("newProduct:", newProduct);
     try {
-      const response = await productsService.getProductById(newProduct);
+      const response = await productsService.addProduct(newProduct);
       res.status(201).json({ response });
     } catch (err) {
       console.log("err:", err);

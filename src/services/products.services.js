@@ -46,11 +46,12 @@ class ProductsService {
   }
 
   async addProduct(newProduct) {
-    if (checkNewProduct(product)) {
+    console.log("newProduct:", newProduct);
+    if (!checkNewProduct(newProduct)) {
       throw "All fields are required. Product invalid";
     }
     const productExists = await productsRepository.getProductByCode(
-      product.code
+      newProduct.code
     );
     if (productExists) {
       return "Product code already exists, Product code must be unique";
@@ -60,13 +61,7 @@ class ProductsService {
   }
 
   async updateProduct(id, productData) {
-    const newProduct = await productsRepository.updateProduct(id, productData);
-
-      if (!newProduct) {
-        throw "Product to update not found";
-      }
-      console.log("Producto actualizado");
-      return newProduct;
+    return await productsRepository.updateProduct(id, productData);
   }
 }
 
