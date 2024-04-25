@@ -6,7 +6,7 @@ function handleQueryString(queryObject, value) {
     if (!queryObject.page) {
       queryArr.push(`page=${value}`);
     }
-    return "/api/products/view?" + queryArr.join("&");
+    return "/views/products?" + queryArr.join("&");
   }
   return null;
 }
